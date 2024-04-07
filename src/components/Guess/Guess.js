@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
-function Guess() {
-  return <div></div>;
+function Guess({ id, guess }) {
+  return (
+    <p key={id} className="guess">
+      {guess}
+    </p>
+  );
 }
 
 export default Guess;

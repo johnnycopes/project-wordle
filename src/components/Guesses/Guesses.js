@@ -1,12 +1,11 @@
 import React from "react";
+import Guess from "../Guess/Guess";
 
 function Guesses({ guesses }) {
   return (
     <div className="guess-results">
       {guesses.map(({ id, guess }) => (
-        <p key={id} className="guess">
-          {guess}
-        </p>
+        <Guess key={id} guess={guess} />
       ))}
     </div>
   );
