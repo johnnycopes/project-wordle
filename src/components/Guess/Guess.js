@@ -7,7 +7,7 @@ function Guess({ guess }) {
     <p className="guess">
       {range(5).map((position) => (
         <span key={position} className="cell">
-          {guess[position]}
+          {guess ? guess[position] : undefined}
         </span>
       ))}
     </p>
