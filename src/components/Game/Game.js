@@ -13,7 +13,7 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState(
-    range(NUM_OF_GUESSES_ALLOWED).map(() => range(5).map(() => ""))
+    range(NUM_OF_GUESSES_ALLOWED).map(() => "")
   );
   const [numberGuess, setNumberGuess] = React.useState(0);
 
@@ -24,7 +24,7 @@ function Game() {
         submit={(newGuess) => {
           setGuesses(
             guesses.map((guess, index) =>
-              numberGuess === index ? newGuess.split("") : guess
+              numberGuess === index ? newGuess : guess
             )
           );
           setNumberGuess(numberGuess + 1);
