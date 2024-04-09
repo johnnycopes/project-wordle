@@ -33,12 +33,12 @@ function Game() {
             )
           );
 
-          const nextGuess = guessesMade + 1;
-          setGuessesMade(nextGuess);
+          const nextGuessesMade = guessesMade + 1;
+          setGuessesMade(nextGuessesMade);
 
           if (newGuess === answer) {
             setOutcome("win");
-          } else if (nextGuess >= NUM_OF_GUESSES_ALLOWED) {
+          } else if (nextGuessesMade >= NUM_OF_GUESSES_ALLOWED) {
             setOutcome("lose");
           }
         }}
