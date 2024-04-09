@@ -3,6 +3,7 @@ import React from "react";
 import { sample, range } from "../../utils";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { WORDS } from "../../data";
+import Banner from "../Banner";
 import Guesses from "../Guesses";
 import GuessInput from "../GuessInput";
 
@@ -16,9 +17,13 @@ function Game() {
     range(NUM_OF_GUESSES_ALLOWED).map(() => "")
   );
   const [numberGuess, setNumberGuess] = React.useState(0);
+  const [outcome, setOutcome] = React.useState(null);
 
   return (
     <>
+      {outcome && (
+        <Banner numOfGuesses={numberGuess} outcome={outcome} answer={answer} />
+      )}
       <Guesses guesses={guesses} answer={answer} />
       <GuessInput
         submit={(newGuess) => {
@@ -27,7 +32,15 @@ function Game() {
               numberGuess === index ? newGuess : guess
             )
           );
-          setNumberGuess(numberGuess + 1);
+
+          const nextGuess = numberGuess + 1;
+          setNumberGuess(nextGuess);
+
+          if (newGuess === answer) {
+            setOutcome("win");
+          } else if (nextGuess >= NUM_OF_GUESSES_ALLOWED) {
+            setOutcome("lose");
+          }
         }}
       />
     </>
