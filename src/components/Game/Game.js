@@ -19,30 +19,28 @@ function Game() {
   const [guessesMade, setGuessesMade] = React.useState(0);
   const [outcome, setOutcome] = React.useState(null);
 
+  function makeGuess(newGuess) {
+    setGuesses(
+      guesses.map((guess, index) => (guessesMade === index ? newGuess : guess))
+    );
+
+    const nextGuessesMade = guessesMade + 1;
+    setGuessesMade(nextGuessesMade);
+
+    if (newGuess === answer) {
+      setOutcome("win");
+    } else if (nextGuessesMade >= NUM_OF_GUESSES_ALLOWED) {
+      setOutcome("lose");
+    }
+  }
+
   return (
     <>
       {outcome && (
         <Banner guessesMade={guessesMade} outcome={outcome} answer={answer} />
       )}
       <Guesses guesses={guesses} answer={answer} />
-      <GuessInput
-        submit={(newGuess) => {
-          setGuesses(
-            guesses.map((guess, index) =>
-              guessesMade === index ? newGuess : guess
-            )
-          );
-
-          const nextGuessesMade = guessesMade + 1;
-          setGuessesMade(nextGuessesMade);
-
-          if (newGuess === answer) {
-            setOutcome("win");
-          } else if (nextGuessesMade >= NUM_OF_GUESSES_ALLOWED) {
-            setOutcome("lose");
-          }
-        }}
-      />
+      <GuessInput submit={makeGuess} />
     </>
   );
 }
