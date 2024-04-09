@@ -40,7 +40,7 @@ function Game() {
         <Banner guessesMade={guessesMade} outcome={outcome} answer={answer} />
       )}
       <Guesses guesses={guesses} answer={answer} />
-      <GuessInput submit={makeGuess} />
+      <GuessInput canGuess={!outcome} submit={makeGuess} />
     </>
   );
 }
