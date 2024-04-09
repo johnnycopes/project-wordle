@@ -1,12 +1,12 @@
 import React from "react";
 
-function Banner({ outcome, numOfGuesses, answer }) {
+function Banner({ outcome, guessesMade, answer }) {
   const win = (
     <div className="happy banner">
       <p>
         <strong>Congratulations!</strong> Got it in{" "}
         <strong>
-          {numOfGuesses} {numOfGuesses === 1 ? "guess" : "guesses"}
+          {guessesMade} {guessesMade === 1 ? "guess" : "guesses"}
         </strong>
         .
       </p>
