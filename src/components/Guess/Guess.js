@@ -9,15 +9,20 @@ function Guess({ guess, answer }) {
   return (
     <p className="guess">
       {range(5).map((position) => (
-        <span
+        <Cell
           key={position}
-          className={`cell ${diff ? diff[position].status : ""}`}
-        >
-          {guess ? guess[position] : undefined}
-        </span>
+          letter={diff ? diff[position]?.letter : undefined}
+          status={diff ? diff[position]?.status : ""}
+        />
       ))}
     </p>
   );
+}
+
+function Cell({ letter, status }) {
+  const className = status ? `cell ${status}` : "cell";
+
+  return <span className={className}>{letter ? letter : undefined}</span>;
 }
 
 export default Guess;
